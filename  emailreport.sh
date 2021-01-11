@@ -1,0 +1,3 @@
+grep 'Total' /tmp/Report.html>tot;sed -e 's/<tr><td>//' -i tot;sed -e 's/<\/td><td><\/td><td>/ /' -i tot;sed -e 's/<\/td><td>/ /' -i tot;sed -e 's/<br><\/td><\/tr>//' -i tot;while read f1 f2 f3 ; do echo "$f2" ; done <tot >rsltfile;val1=0;val1=$(<rsltfile);sum=0;for n in $val1; do ((sum+=n));done;
+grep 'Total' /tmp/Report.html>tot;sed -e 's/<tr><td>//' -i tot;sed -e 's/<\/td><td><\/td><td>/ /' -i tot;sed -e 's/<\/td><td>/ /' -i tot;sed -e 's/<br><\/td><\/tr>//' -i tot;while read f1 f2 f3 ; do echo "$f3" ; done <tot >rsltfile;val1=0;val1=$(<rsltfile);Fsum=0;for n in $val1; do ((Fsum+=n));done;((Psum=sum-Fsum));echo "<table border="3" ><tr><th>Total</th><th>Passed</th><th>Failed</th></tr><tr><td>$sum</td><td>$Psum</td><td>$Fsum</td></tr></table>";rm tot
+
